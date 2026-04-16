@@ -370,7 +370,7 @@ Réunion du 15/04 avec M. Dupont (Directeur RH, Airbus)
   // ── API Key ──────────────────────────────────────────────
   function saveApiKey() {
     const val = document.getElementById('api-key-input').value.trim();
-    if (!val.startsWith('AIza')) { alert('Clé invalide. Elle doit commencer par "AIza..."'); return; }
+    if (val.length < 10) { alert('Clé invalide. Vérifiez que vous avez bien copié toute la clé.'); return; }
     apiKey = val;
     localStorage.setItem('gemini_api_key', apiKey);
     showApiSaved();
