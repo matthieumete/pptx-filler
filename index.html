@@ -8,193 +8,109 @@
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg: #f5f3ee;
-      --ink: #1a1814;
-      --ink2: #4a4640;
-      --ink3: #8a857d;
-      --paper: #faf9f6;
-      --card: #ffffff;
-      --accent: #1a73e8;
-      --accent-light: #e8f0fe;
-      --accent-border: #aecbfa;
-      --green: #1a7a4a;
-      --green-light: #edf7f2;
-      --green-border: #a8dfc0;
-      --border: #e0ddd6;
-      --radius: 14px;
+      --bg: #f5f3ee; --ink: #1a1814; --ink2: #4a4640; --ink3: #8a857d;
+      --paper: #faf9f6; --card: #fff;
+      --accent: #1a73e8; --accent-light: #e8f0fe; --accent-border: #aecbfa;
+      --green: #1a7a4a; --green-light: #edf7f2; --green-border: #a8dfc0;
+      --border: #e0ddd6; --radius: 14px;
       --shadow: 0 2px 8px rgba(26,24,20,.06), 0 12px 32px rgba(26,24,20,.04);
     }
-
     body {
       font-family: 'Bricolage Grotesque', sans-serif;
-      background: var(--bg);
-      color: var(--ink);
-      min-height: 100vh;
-      padding: 48px 20px 100px;
-      position: relative;
+      background: var(--bg); color: var(--ink);
+      min-height: 100vh; padding: 48px 20px 100px;
     }
-
     body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
     }
+    .wrapper { max-width: 700px; margin: 0 auto; position: relative; z-index: 1; }
 
-    .wrapper { max-width: 680px; margin: 0 auto; position: relative; z-index: 1; }
-
-    .header { margin-bottom: 44px; }
+    .header { margin-bottom: 40px; }
     .header .tag {
       display: inline-flex; align-items: center; gap: 6px;
-      background: var(--accent); color: white;
+      background: var(--accent); color: #fff;
       font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
-      padding: 5px 12px; border-radius: 999px; margin-bottom: 16px;
+      padding: 5px 12px; border-radius: 999px; margin-bottom: 14px;
     }
-    .header h1 { font-size: 42px; font-weight: 800; letter-spacing: -.03em; line-height: 1.05; margin-bottom: 10px; }
+    .header h1 { font-size: 38px; font-weight: 800; letter-spacing: -.03em; line-height: 1.08; margin-bottom: 8px; }
     .header h1 em { font-style: normal; color: var(--accent); }
-    .header p { color: var(--ink3); font-size: 15px; line-height: 1.6; max-width: 480px; }
+    .header p { color: var(--ink3); font-size: 14px; line-height: 1.6; max-width: 500px; }
 
-    .card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: var(--radius); box-shadow: var(--shadow);
-      margin-bottom: 16px; overflow: hidden;
-    }
-    .card-head {
-      padding: 18px 24px; border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; gap: 12px; background: var(--paper);
-    }
-    .step-num {
-      width: 28px; height: 28px; border-radius: 8px; background: var(--ink);
-      color: white; font-size: 12px; font-weight: 700;
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
-    .card-head h2 { font-size: 15px; font-weight: 600; }
-    .status-dot { margin-left: auto; width: 8px; height: 8px; border-radius: 50%; background: var(--border); }
-    .status-dot.ready { background: var(--green); box-shadow: 0 0 0 3px var(--green-light); }
-    .card-body { padding: 24px; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 14px; overflow: hidden; }
+    .card-head { padding: 16px 22px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; background: var(--paper); }
+    .sn { width: 26px; height: 26px; border-radius: 7px; background: #ccc; color: #fff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background .3s; }
+    .sn.ok { background: var(--green); }
+    .sn.active { background: var(--accent); }
+    .card-head h2 { font-size: 14px; font-weight: 600; }
+    .dot { margin-left: auto; width: 8px; height: 8px; border-radius: 50%; background: var(--border); transition: all .3s; }
+    .dot.ok { background: var(--green); box-shadow: 0 0 0 3px var(--green-light); }
+    .card-body { padding: 22px; }
 
-    .notes-area {
-      width: 100%; min-height: 180px;
-      background: var(--paper); border: 1.5px solid var(--border);
-      border-radius: 10px; padding: 16px;
-      font-family: 'DM Mono', monospace; font-size: 13px; line-height: 1.7;
-      color: var(--ink); resize: vertical; outline: none;
-      transition: border-color .15s, box-shadow .15s;
-    }
-    .notes-area:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(26,115,232,.08); }
+    .api-row { display: flex; gap: 8px; margin-bottom: 10px; }
+    .api-input { flex: 1; background: var(--paper); border: 1.5px solid var(--border); border-radius: 9px; padding: 9px 13px; font-family: 'DM Mono', monospace; font-size: 12px; color: var(--ink); outline: none; transition: border-color .15s; }
+    .api-input:focus { border-color: var(--accent); }
+    .api-input::placeholder { color: var(--ink3); }
+    .btn-sm { background: var(--ink); color: #fff; border: none; border-radius: 9px; padding: 9px 15px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; transition: background .15s; white-space: nowrap; }
+    .btn-sm:hover { background: var(--accent); }
+    .api-ok { font-size: 12px; color: var(--green); font-weight: 500; display: flex; align-items: center; gap: 5px; }
+
+    .notes-area { width: 100%; min-height: 160px; background: var(--paper); border: 1.5px solid var(--border); border-radius: 9px; padding: 14px; font-family: 'DM Mono', monospace; font-size: 13px; line-height: 1.7; color: var(--ink); resize: vertical; outline: none; transition: border-color .15s; }
+    .notes-area:focus { border-color: var(--accent); }
     .notes-area::placeholder { color: var(--ink3); }
 
-    .dropzone {
-      border: 2px dashed var(--border); border-radius: 10px;
-      padding: 36px 24px; text-align: center; cursor: pointer;
-      transition: border-color .2s, background .2s; background: var(--paper); position: relative;
-    }
+    .dropzone { border: 2px dashed var(--border); border-radius: 9px; padding: 32px 20px; text-align: center; cursor: pointer; transition: border-color .2s, background .2s; background: var(--paper); position: relative; }
     .dropzone input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
-    .dropzone:hover, .dropzone.dragging { border-color: var(--accent); background: var(--accent-light); }
+    .dropzone:hover, .dropzone.drag { border-color: var(--accent); background: var(--accent-light); }
     .dropzone.loaded { border-color: var(--green); border-style: solid; background: var(--green-light); }
-    .dz-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; }
-    .dz-icon.idle { background: var(--border); color: var(--ink3); }
-    .dz-icon.ok { background: var(--green-light); color: var(--green); border: 1px solid var(--green-border); }
+    .dz-ico { width: 40px; height: 40px; border-radius: 9px; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; }
+    .dz-ico.idle { background: var(--border); color: var(--ink3); }
+    .dz-ico.ok { background: var(--green-light); color: var(--green); border: 1px solid var(--green-border); }
     .dropzone h3 { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
     .dropzone p { font-size: 12px; color: var(--ink3); }
 
-    .chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
-    .chip {
-      background: var(--accent-light); border: 1px solid var(--accent-border);
-      color: var(--accent); border-radius: 999px; padding: 3px 11px;
-      font-size: 12px; font-family: 'DM Mono', monospace; font-weight: 500;
-    }
+    .slide-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .slide-chip { background: var(--accent-light); border: 1px solid var(--accent-border); color: var(--accent); border-radius: 6px; padding: 4px 10px; font-size: 11px; font-weight: 500; display: flex; align-items: center; gap: 5px; }
 
-    .api-row { display: flex; gap: 8px; align-items: center; margin-bottom: 12px; }
-    .api-input {
-      flex: 1; background: var(--paper); border: 1.5px solid var(--border);
-      border-radius: 10px; padding: 10px 14px;
-      font-family: 'DM Mono', monospace; font-size: 12px; color: var(--ink);
-      outline: none; transition: border-color .15s;
-    }
-    .api-input:focus { border-color: var(--accent); }
-    .api-input::placeholder { color: var(--ink3); }
-    .api-save {
-      background: var(--ink); color: white; border: none; border-radius: 10px;
-      padding: 10px 16px; font-size: 13px; font-weight: 600; cursor: pointer;
-      font-family: 'Bricolage Grotesque', sans-serif; white-space: nowrap; transition: background .15s;
-    }
-    .api-save:hover { background: var(--accent); }
-    .api-status { font-size: 12px; color: var(--green); font-weight: 500; display: flex; align-items: center; gap: 5px; }
+    .btn-gen { width: 100%; padding: 15px; background: var(--ink); color: #fff; border: none; border-radius: 11px; font-family: 'Bricolage Grotesque', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 9px; transition: all .2s; margin-top: 20px; }
+    .btn-gen:hover:not(:disabled) { background: var(--accent); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(26,115,232,.25); }
+    .btn-gen:disabled { opacity: .35; cursor: not-allowed; transform: none; }
 
-    .btn-generate {
-      width: 100%; padding: 16px; background: var(--ink); color: white;
-      border: none; border-radius: 12px;
-      font-family: 'Bricolage Grotesque', sans-serif; font-size: 16px; font-weight: 700;
-      cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
-      transition: all .2s; letter-spacing: -.01em; margin-top: 24px;
-    }
-    .btn-generate:hover:not(:disabled) { background: var(--accent); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(26,115,232,.25); }
-    .btn-generate:disabled { opacity: .4; cursor: not-allowed; transform: none; }
+    .pipeline { display: flex; flex-direction: column; }
+    .ps { display: flex; align-items: flex-start; gap: 12px; padding: 13px 0; position: relative; }
+    .ps:not(:last-child)::after { content: ''; position: absolute; left: 12px; top: 40px; width: 2px; height: calc(100% - 26px); background: var(--border); }
+    .pi { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 11px; font-weight: 700; transition: all .3s; }
+    .pi.idle { background: var(--border); color: var(--ink3); }
+    .pi.run { background: var(--accent); color: #fff; animation: pulse 1.2s ease-in-out infinite; }
+    .pi.done { background: var(--green); color: #fff; }
+    .pi.err { background: #ef4444; color: #fff; }
+    @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(26,115,232,.4)} 50%{box-shadow:0 0 0 6px rgba(26,115,232,0)} }
+    .pl { font-size: 13px; font-weight: 500; color: var(--ink2); padding-top: 4px; }
+    .pd { font-size: 11px; color: var(--ink3); margin-top: 2px; font-family: 'DM Mono', monospace; }
 
-    .pipeline { display: flex; flex-direction: column; gap: 0; }
-    .pipe-step { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; position: relative; }
-    .pipe-step:not(:last-child)::after {
-      content: ''; position: absolute; left: 13px; top: 42px;
-      width: 2px; height: calc(100% - 28px); background: var(--border);
-    }
-    .pipe-icon {
-      width: 28px; height: 28px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; font-size: 12px; font-weight: 700; transition: all .3s;
-    }
-    .pipe-icon.idle { background: var(--border); color: var(--ink3); }
-    .pipe-icon.running { background: var(--accent); color: white; animation: pulse 1.2s ease-in-out infinite; }
-    .pipe-icon.done { background: var(--green); color: white; }
-    .pipe-icon.error { background: #ef4444; color: white; }
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(26,115,232,.4); }
-      50% { box-shadow: 0 0 0 6px rgba(26,115,232,0); }
-    }
-    .pipe-label { font-size: 14px; font-weight: 500; color: var(--ink2); padding-top: 4px; }
-    .pipe-detail { font-size: 12px; color: var(--ink3); margin-top: 2px; font-family: 'DM Mono', monospace; }
+    .map-preview { background: var(--paper); border: 1px solid var(--border); border-radius: 9px; padding: 14px; margin-top: 14px; }
+    .map-preview h4 { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--ink3); margin-bottom: 10px; }
+    .map-row { display: flex; align-items: flex-start; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--border); }
+    .map-row:last-child { border-bottom: none; }
+    .map-key { font-size: 11px; font-weight: 600; color: var(--accent); min-width: 80px; padding-top: 1px; }
+    .map-val { font-size: 12px; color: var(--ink); line-height: 1.5; flex: 1; }
 
-    .mapping-preview { background: var(--paper); border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-top: 16px; }
-    .mapping-preview h4 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--ink3); margin-bottom: 12px; }
-    .mapping-row { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); }
-    .mapping-row:last-child { border-bottom: none; }
-    .mapping-key { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--accent); white-space: nowrap; min-width: 140px; padding-top: 1px; }
-    .mapping-val { font-size: 13px; color: var(--ink); line-height: 1.5; flex: 1; }
-    .mapping-val.empty { color: var(--ink3); font-style: italic; }
-
-    .download-section { text-align: center; padding: 32px 24px; }
-    .dl-icon {
-      width: 72px; height: 72px; border-radius: 18px;
-      background: var(--green-light); border: 2px solid var(--green-border);
-      display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: var(--green);
-    }
-    .download-section h2 { font-size: 24px; font-weight: 700; margin-bottom: 6px; }
-    .download-section p { color: var(--ink3); font-size: 14px; margin-bottom: 28px; }
-    .btn-dl {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--green); color: white; border: none; border-radius: 12px;
-      padding: 14px 32px; font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 15px; font-weight: 700; cursor: pointer; transition: all .2s;
-    }
+    .result-inner { text-align: center; padding: 30px 22px; }
+    .res-ico { width: 64px; height: 64px; border-radius: 16px; background: var(--green-light); border: 2px solid var(--green-border); display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; color: var(--green); }
+    .result-inner h2 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+    .result-inner p { color: var(--ink3); font-size: 13px; margin-bottom: 22px; line-height: 1.6; }
+    .btn-dl { display: inline-flex; align-items: center; gap: 8px; background: var(--green); color: #fff; border: none; border-radius: 11px; padding: 13px 28px; font-family: 'Bricolage Grotesque', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; transition: all .2s; }
     .btn-dl:hover { background: #155c38; transform: translateY(-1px); }
-    .btn-restart {
-      display: block; margin: 16px auto 0; background: none; border: none;
-      color: var(--ink3); font-size: 13px; cursor: pointer; text-decoration: underline;
-      font-family: 'Bricolage Grotesque', sans-serif;
-    }
-    .btn-restart:hover { color: var(--ink); }
+    .btn-restart { display: block; margin: 14px auto 0; background: none; border: none; color: var(--ink3); font-size: 13px; cursor: pointer; text-decoration: underline; font-family: inherit; }
 
-    .alert { display: flex; align-items: flex-start; gap: 10px; padding: 12px 14px; border-radius: 10px; font-size: 13px; margin-top: 12px; }
-    .alert-error { background: #fef2f2; border: 1px solid #fecaca; color: #dc2626; }
-    .alert-warn { background: #fffbeb; border: 1px solid #fde68a; color: #92400e; }
-
-    .sep { height: 1px; background: var(--border); margin: 20px 0; }
+    .alert { display: flex; align-items: flex-start; gap: 9px; padding: 11px 13px; border-radius: 9px; font-size: 12px; margin-top: 10px; }
+    .alert-err { background: #fef2f2; border: 1px solid #fecaca; color: #dc2626; }
+    .sep { height: 1px; background: var(--border); margin: 16px 0; }
+    .char-count { font-size: 11px; color: var(--ink3); text-align: right; margin-top: 5px; }
     .hidden { display: none !important; }
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-    .fade-up { animation: fadeUp .35s ease both; }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+    .fade-up { animation: fadeUp .3s ease both; }
   </style>
 </head>
 <body>
@@ -203,438 +119,412 @@
   <div class="header">
     <div class="tag">
       <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
-      Powered by Gemini AI
+      Gemini AI · Zéro balise requise
     </div>
-    <h1>Notes → <em>Slides</em><br>en un clic.</h1>
-    <p>Collez vos notes de réunion, uploadez votre template PPTX — l'IA remplit tout automatiquement.</p>
+    <h1>Notes → <em>Slides</em><br>automatiquement.</h1>
+    <p>Collez vos notes, uploadez n'importe quel template PPTX sans balises. L'IA choisit les slides à garder et remplit le contenu.</p>
   </div>
 
-  <!-- Clé API Gemini -->
-  <div class="card" id="card-api">
+  <!-- API Key -->
+  <div class="card">
     <div class="card-head">
-      <div class="step-num" id="step0-num" style="background:var(--accent);">⚙</div>
-      <h2>Clé API Gemini (gratuite)</h2>
-      <div class="status-dot" id="api-dot"></div>
+      <div class="sn active" id="sn0">⚙</div>
+      <h2>Clé API Gemini</h2>
+      <div class="dot" id="dot0"></div>
     </div>
     <div class="card-body">
       <div class="api-row">
-        <input type="password" class="api-input" id="api-key-input" placeholder="AIzaSy..." />
-        <button class="api-save" onclick="saveApiKey()">Enregistrer</button>
+        <input class="api-input" type="password" id="api-input" placeholder="Votre clé API Google AI Studio..." />
+        <button class="btn-sm" onclick="saveKey()">Enregistrer</button>
       </div>
-      <div id="api-ok" class="hidden">
-        <span class="api-status">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          Clé enregistrée — <span id="api-key-preview" style="font-family:'DM Mono',monospace;font-size:11px;"></span>
-        </span>
+      <div id="api-ok" class="hidden api-ok">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Clé enregistrée — <span id="key-preview" style="font-family:'DM Mono',monospace;font-size:11px;"></span>
       </div>
-      <p style="font-size:12px;color:var(--ink3);margin-top:10px;">
-        Clé gratuite sur <a href="https://aistudio.google.com/apikey" target="_blank" style="color:var(--accent);">aistudio.google.com/apikey</a> → "Create API Key". Sauvegardée uniquement dans votre navigateur.
+      <p style="font-size:11px;color:var(--ink3);margin-top:8px;">
+        Clé gratuite sur <a href="https://aistudio.google.com/apikey" target="_blank" style="color:var(--accent);">aistudio.google.com/apikey</a> → "Create API Key".
       </p>
     </div>
   </div>
 
   <!-- Notes -->
-  <div class="card" id="card-notes">
+  <div class="card">
     <div class="card-head">
-      <div class="step-num" id="step1-num">1</div>
-      <h2>Notes / Compte-rendu de réunion</h2>
-      <div class="status-dot" id="notes-dot"></div>
+      <div class="sn" id="sn1">1</div>
+      <h2>Notes / Compte-rendu</h2>
+      <div class="dot" id="dot1"></div>
     </div>
     <div class="card-body">
-      <textarea class="notes-area" id="notes-input"
-        placeholder="Collez ici vos prises de notes, compte-rendu de RDV, transcript, bullet points...
+      <textarea class="notes-area" id="notes" oninput="onNotes()"
+        placeholder="Collez ici vos prises de notes, compte-rendu de RDV, transcript...
 
 Exemple :
 Réunion du 15/04 avec M. Dupont (Directeur RH, Airbus)
-- Besoin : former 200 collaborateurs sur M365 Copilot d'ici septembre
+- Besoin : former 200 collaborateurs sur M365 Copilot avant septembre
 - Budget validé : 45 000€
 - Contact : sarah.martin@airbus.com
-- Prochaine étape : envoi d'une proposition avant le 30/04"
-        oninput="onNotesInput()"></textarea>
-      <div style="display:flex;justify-content:flex-end;margin-top:6px;">
-        <span id="notes-count" style="font-size:11px;color:var(--ink3);">0 caractères</span>
-      </div>
+- Prochaine étape : proposition commerciale avant le 30/04"></textarea>
+      <div class="char-count" id="char-count">0 caractères</div>
     </div>
   </div>
 
-  <!-- Template PPTX -->
-  <div class="card" id="card-template">
+  <!-- Template -->
+  <div class="card">
     <div class="card-head">
-      <div class="step-num" id="step2-num">2</div>
+      <div class="sn" id="sn2">2</div>
       <h2>Template PowerPoint (.pptx)</h2>
-      <div class="status-dot" id="template-dot"></div>
+      <div class="dot" id="dot2"></div>
     </div>
     <div class="card-body">
-      <div class="dropzone" id="dropzone"
-           ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
-        <input type="file" accept=".pptx" onchange="handleFile(event)" />
-        <div class="dz-icon idle" id="dz-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+      <div class="dropzone" id="dz" ondragover="doDragOver(event)" ondragleave="doDragLeave(event)" ondrop="doDrop(event)">
+        <input type="file" accept=".pptx" onchange="onFile(event)" />
+        <div class="dz-ico idle" id="dz-ico">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
         </div>
         <h3 id="dz-title">Glissez votre fichier .pptx ici</h3>
-        <p id="dz-sub">Le template doit contenir des balises <code style="background:rgba(0,0,0,.06);padding:1px 5px;border-radius:4px;font-family:'DM Mono',monospace;">{{variable}}</code></p>
+        <p id="dz-sub">Aucune balise requise — l'IA analyse la structure de votre template</p>
       </div>
-      <div id="tags-found" class="hidden">
-        <div class="chips" id="chips-list"></div>
-        <p style="font-size:12px;color:var(--ink3);margin-top:10px;">
-          <strong id="tags-count-lbl" style="color:var(--green);"></strong> — Gemini va remplir chaque balise à partir de vos notes.
-        </p>
+      <div id="slide-info" class="hidden">
+        <div class="slide-chips" id="slide-chips"></div>
+        <p style="font-size:11px;color:var(--ink3);margin-top:8px;">Gemini va analyser ces slides, choisir les plus pertinentes et les remplir.</p>
       </div>
-      <div class="alert alert-warn hidden" id="no-tags-warn">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        <span>Aucune balise <code>{{variable}}</code> trouvée dans ce template.</span>
-      </div>
-      <div class="alert alert-error hidden" id="file-error">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        <span id="file-error-msg"></span>
+      <div class="alert alert-err hidden" id="file-err">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span id="file-err-msg"></span>
       </div>
     </div>
   </div>
 
-  <!-- Bouton -->
-  <button class="btn-generate" id="btn-generate" onclick="runPipeline()" disabled>
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+  <button class="btn-gen" id="btn-gen" onclick="run()" disabled>
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
     Générer la présentation
   </button>
 
   <!-- Pipeline -->
-  <div class="card hidden fade-up" id="card-pipeline" style="margin-top:16px;">
+  <div class="card hidden fade-up" id="card-pipe" style="margin-top:14px;">
     <div class="card-head">
-      <div class="step-num" style="background:var(--accent);">⚡</div>
+      <div class="sn active">⚡</div>
       <h2>Traitement en cours</h2>
     </div>
     <div class="card-body">
       <div class="pipeline">
-        <div class="pipe-step">
-          <div class="pipe-icon idle" id="pipe0">1</div>
-          <div><div class="pipe-label">Envoi des notes à Gemini</div><div class="pipe-detail" id="pipe0-detail">En attente...</div></div>
-        </div>
-        <div class="pipe-step">
-          <div class="pipe-icon idle" id="pipe1">2</div>
-          <div><div class="pipe-label">Extraction des informations clés</div><div class="pipe-detail" id="pipe1-detail">En attente...</div></div>
-        </div>
-        <div class="pipe-step">
-          <div class="pipe-icon idle" id="pipe2">3</div>
-          <div><div class="pipe-label">Remplissage du template</div><div class="pipe-detail" id="pipe2-detail">En attente...</div></div>
-        </div>
-        <div class="pipe-step">
-          <div class="pipe-icon idle" id="pipe3">4</div>
-          <div><div class="pipe-label">Génération du fichier PPTX</div><div class="pipe-detail" id="pipe3-detail">En attente...</div></div>
-        </div>
+        <div class="ps"><div class="pi idle" id="p0">1</div><div><div class="pl">Analyse du template et des notes</div><div class="pd" id="p0d">En attente...</div></div></div>
+        <div class="ps"><div class="pi idle" id="p1">2</div><div><div class="pl">Sélection des slides pertinentes</div><div class="pd" id="p1d">En attente...</div></div></div>
+        <div class="ps"><div class="pi idle" id="p2">3</div><div><div class="pl">Remplissage du contenu</div><div class="pd" id="p2d">En attente...</div></div></div>
+        <div class="ps"><div class="pi idle" id="p3">4</div><div><div class="pl">Génération du fichier PPTX</div><div class="pd" id="p3d">En attente...</div></div></div>
       </div>
-      <div id="mapping-preview-wrap" class="hidden">
+      <div id="map-wrap" class="hidden">
         <div class="sep"></div>
-        <div class="mapping-preview">
-          <h4>Aperçu du remplissage</h4>
-          <div id="mapping-rows"></div>
+        <div class="map-preview">
+          <h4>Contenu injecté par slide</h4>
+          <div id="map-rows"></div>
         </div>
       </div>
-      <div class="alert alert-error hidden" id="pipeline-error" style="margin-top:16px;">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        <span id="pipeline-error-msg"></span>
+      <div class="alert alert-err hidden" id="pipe-err" style="margin-top:12px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span id="pipe-err-msg"></span>
       </div>
     </div>
   </div>
 
-  <!-- Résultat -->
-  <div class="card hidden fade-up" id="card-result" style="margin-top:16px;">
+  <!-- Result -->
+  <div class="card hidden fade-up" id="card-result" style="margin-top:14px;">
     <div class="card-body">
-      <div class="download-section">
-        <div class="dl-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      <div class="result-inner">
+        <div class="res-ico">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
         </div>
         <h2>Présentation prête !</h2>
-        <p>Gemini a rempli <strong id="filled-count">0</strong> balise(s) à partir de vos notes.<br>Votre template original n'a pas été modifié.</p>
-        <button class="btn-dl" onclick="downloadResult()">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <p id="result-summary">L'IA a sélectionné et rempli vos slides.</p>
+        <button class="btn-dl" onclick="download()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Télécharger le PPTX
         </button>
-        <button class="btn-restart" onclick="restart()">Recommencer avec un nouveau fichier</button>
+        <button class="btn-restart" onclick="restart()">Recommencer</button>
       </div>
     </div>
   </div>
 
 </div>
 <script>
-  let apiKey = localStorage.getItem('gemini_api_key') || '';
-  let pptxZip = null;
-  let detectedTags = [];
-  let generatedBlob = null;
-  let originalFileName = '';
+let apiKey = localStorage.getItem('gemini_key') || '';
+let pptxZip = null;
+let slideData = [];
+let resultBlob = null;
+let origName = '';
 
-  window.addEventListener('DOMContentLoaded', () => {
-    if (apiKey) showApiSaved();
-    checkReadiness();
-  });
+window.addEventListener('DOMContentLoaded', () => {
+  if (apiKey) renderApiOk();
+  checkReady();
+});
 
-  // ── API Key ──────────────────────────────────────────────
-  function saveApiKey() {
-    const val = document.getElementById('api-key-input').value.trim();
-    if (val.length < 10) { alert('Clé invalide. Vérifiez que vous avez bien copié toute la clé.'); return; }
-    apiKey = val;
-    localStorage.setItem('gemini_api_key', apiKey);
-    showApiSaved();
-    checkReadiness();
+function saveKey() {
+  const v = g('api-input').value.trim();
+  if (v.length < 8) { alert('Clé trop courte.'); return; }
+  apiKey = v;
+  localStorage.setItem('gemini_key', apiKey);
+  renderApiOk();
+  checkReady();
+}
+function renderApiOk() {
+  g('api-input').value = apiKey;
+  show('api-ok');
+  g('key-preview').textContent = apiKey.substring(0,14) + '...';
+  setStep('sn0','dot0','ok');
+}
+
+function onNotes() {
+  const v = g('notes').value;
+  g('char-count').textContent = v.length + ' caractères';
+  setStep('sn1','dot1', v.trim().length > 30 ? 'ok' : '');
+  checkReady();
+}
+
+function doDragOver(e) { e.preventDefault(); g('dz').classList.add('drag'); }
+function doDragLeave(e) { e.preventDefault(); g('dz').classList.remove('drag'); }
+function doDrop(e) { e.preventDefault(); g('dz').classList.remove('drag'); const f=e.dataTransfer.files[0]; if(f) loadFile(f); }
+function onFile(e) { if(e.target.files[0]) loadFile(e.target.files[0]); }
+
+async function loadFile(file) {
+  hide('file-err'); hide('slide-info');
+  if (!file.name.toLowerCase().endsWith('.pptx')) { showErr('file-err','file-err-msg','Seuls les fichiers .pptx sont acceptés.'); return; }
+  origName = file.name.replace(/\.pptx$/i,'');
+  try {
+    pptxZip = await JSZip.loadAsync(file);
+    slideData = await readSlides(pptxZip);
+    g('dz').classList.add('loaded');
+    g('dz-ico').className = 'dz-ico ok';
+    g('dz-ico').innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>`;
+    g('dz-title').textContent = file.name;
+    g('dz-sub').textContent = (file.size/1024).toFixed(0)+' KB · '+slideData.length+' slide(s) détectée(s)';
+    g('slide-chips').innerHTML = slideData.map(s =>
+      `<div class="slide-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>Slide ${s.index}${s.title?' · '+s.title.substring(0,18):''}</div>`
+    ).join('');
+    show('slide-info');
+    setStep('sn2','dot2','ok');
+    checkReady();
+  } catch(err) { showErr('file-err','file-err-msg','Erreur : '+err.message); }
+}
+
+async function readSlides(zip) {
+  const paths = Object.keys(zip.files)
+    .filter(p => p.match(/^ppt\/slides\/slide(\d+)\.xml$/))
+    .sort((a,b) => sNum(a)-sNum(b));
+  const slides = [];
+  for (const path of paths) {
+    const idx = sNum(path);
+    const xml = await zip.files[path].async('string');
+    const texts = allTexts(xml);
+    slides.push({ index:idx, path, title:texts[0]||'', texts, xml });
   }
+  return slides;
+}
 
-  function showApiSaved() {
-    document.getElementById('api-key-input').value = apiKey;
-    show('api-ok');
-    document.getElementById('api-key-preview').textContent = apiKey.substring(0, 12) + '...';
-    document.getElementById('api-dot').classList.add('ready');
-    document.getElementById('step0-num').style.background = 'var(--green)';
+function sNum(p) { const m=p.match(/slide(\d+)\.xml$/); return m?parseInt(m[1]):0; }
+
+function allTexts(xml) {
+  const out=[];
+  const pr=/<a:p\b[^>]*>([\s\S]*?)<\/a:p>/g; let pm;
+  while((pm=pr.exec(xml))!==null){
+    const rr=/<a:t[^>]*>([\s\S]*?)<\/a:t>/g; let rm; const runs=[];
+    while((rm=rr.exec(pm[1]))!==null) runs.push(unesc(rm[1]));
+    const t=runs.join('').trim(); if(t) out.push(t);
   }
+  return out;
+}
 
-  // ── Notes ────────────────────────────────────────────────
-  function onNotesInput() {
-    const val = document.getElementById('notes-input').value;
-    document.getElementById('notes-count').textContent = val.length + ' caractères';
-    const ok = val.trim().length > 50;
-    document.getElementById('step1-num').style.background = ok ? 'var(--green)' : '';
-    document.getElementById('notes-dot').classList.toggle('ready', ok);
-    checkReadiness();
+function checkReady() {
+  g('btn-gen').disabled = !(apiKey && g('notes').value.trim().length>30 && slideData.length>0);
+}
+
+async function run() {
+  show('card-pipe'); hide('card-result'); hide('pipe-err'); hide('map-wrap');
+  g('btn-gen').disabled = true;
+  g('card-pipe').scrollIntoView({behavior:'smooth',block:'start'});
+  [0,1,2,3].forEach(i=>setPipe(i,'idle','En attente...'));
+
+  try {
+    setPipe(0,'run','Envoi à Gemini Flash...');
+    const notes = g('notes').value.trim();
+    const ai = await callGemini(notes, slideData);
+    setPipe(0,'done', slideData.length+' slides analysées');
+
+    setPipe(1,'run','Filtrage...');
+    await sleep(150);
+    setPipe(1,'done','Slides retenues : '+ai.selectedSlides.join(', '));
+
+    setPipe(2,'run','Injection du contenu...');
+    await sleep(150);
+    renderMap(ai.content);
+    show('map-wrap');
+    setPipe(2,'done','Contenu injecté');
+
+    setPipe(3,'run','Assemblage PPTX...');
+    resultBlob = await buildPPTX(pptxZip, slideData, ai);
+    setPipe(3,'done','Fichier prêt');
+
+    g('result-summary').innerHTML = `Gemini a retenu <strong>${ai.selectedSlides.length}</strong> slide(s) et rempli le contenu depuis vos notes.<br><span style="font-size:11px;">Template original non modifié.</span>`;
+    show('card-result');
+    g('card-result').scrollIntoView({behavior:'smooth',block:'center'});
+  } catch(err) {
+    showErr('pipe-err','pipe-err-msg',err.message);
+    g('btn-gen').disabled = false;
   }
+}
 
-  // ── File ─────────────────────────────────────────────────
-  function onDragOver(e) { e.preventDefault(); document.getElementById('dropzone').classList.add('dragging'); }
-  function onDragLeave(e) { e.preventDefault(); document.getElementById('dropzone').classList.remove('dragging'); }
-  function onDrop(e) { e.preventDefault(); document.getElementById('dropzone').classList.remove('dragging'); const f = e.dataTransfer.files[0]; if (f) loadPPTX(f); }
-  function handleFile(e) { if (e.target.files[0]) loadPPTX(e.target.files[0]); }
+async function callGemini(notes, slides) {
+  const summary = slides.map(s =>
+    `Slide ${s.index} :\n${s.texts.slice(0,5).map(t=>'  - '+t).join('\n')}`
+  ).join('\n\n');
 
-  async function loadPPTX(file) {
-    hide('no-tags-warn'); hide('file-error'); hide('tags-found');
-    if (!file.name.toLowerCase().endsWith('.pptx')) { showErr('file-error', 'file-error-msg', 'Seuls les fichiers .pptx sont acceptés.'); return; }
-    originalFileName = file.name.replace(/\.pptx$/i, '');
-    try {
-      pptxZip = await JSZip.loadAsync(file);
-      detectedTags = await extractTags(pptxZip);
-      const dz = document.getElementById('dropzone');
-      dz.classList.add('loaded');
-      document.getElementById('dz-icon').className = 'dz-icon ok';
-      document.getElementById('dz-icon').innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>`;
-      document.getElementById('dz-title').textContent = file.name;
-      document.getElementById('dz-sub').textContent = (file.size/1024).toFixed(0) + ' KB · ' + detectedTags.length + ' balise(s) détectée(s)';
-      document.getElementById('step2-num').style.background = detectedTags.length > 0 ? 'var(--green)' : '#ef4444';
-      document.getElementById('template-dot').classList.toggle('ready', detectedTags.length > 0);
-      if (detectedTags.length === 0) { show('no-tags-warn'); checkReadiness(); return; }
-      document.getElementById('chips-list').innerHTML = detectedTags.map(t => `<span class="chip">{{${t}}}</span>`).join('');
-      document.getElementById('tags-count-lbl').textContent = detectedTags.length + ' balise' + (detectedTags.length > 1 ? 's' : '') + ' détectée' + (detectedTags.length > 1 ? 's' : '');
-      show('tags-found');
-      checkReadiness();
-    } catch(err) { showErr('file-error', 'file-error-msg', 'Erreur : ' + err.message); }
-  }
+  const prompt = `Tu es un assistant qui remplit des présentations PowerPoint à partir de notes de réunion.
 
-  async function extractTags(zip) {
-    const tagSet = new Set();
-    const slidePaths = Object.keys(zip.files).filter(p => p.match(/^ppt\/slides\/slide\d+\.xml$/));
-    for (const path of slidePaths) {
-      const content = await zip.files[path].async('string');
-      extractParaTexts(content).forEach(pt => {
-        let m; const r = /\{\{([^}]+)\}\}/g;
-        while ((m = r.exec(pt)) !== null) tagSet.add(m[1].trim());
-      });
-    }
-    return Array.from(tagSet);
-  }
-
-  function extractParaTexts(xml) {
-    const texts = [];
-    const pr = /<a:p\b[^>]*>([\s\S]*?)<\/a:p>/g; let pm;
-    while ((pm = pr.exec(xml)) !== null) {
-      const runs = []; const rr = /<a:t[^>]*>([\s\S]*?)<\/a:t>/g; let rm;
-      while ((rm = rr.exec(pm[1])) !== null) runs.push(unescXml(rm[1]));
-      texts.push(runs.join(''));
-    }
-    return texts;
-  }
-
-  function checkReadiness() {
-    const hasKey = !!apiKey;
-    const hasNotes = document.getElementById('notes-input').value.trim().length > 50;
-    const hasTags = detectedTags.length > 0;
-    document.getElementById('btn-generate').disabled = !(hasKey && hasNotes && hasTags);
-  }
-
-  // ── Pipeline ─────────────────────────────────────────────
-  async function runPipeline() {
-    show('card-pipeline'); hide('card-result'); hide('pipeline-error'); hide('mapping-preview-wrap');
-    document.getElementById('btn-generate').disabled = true;
-    document.getElementById('card-pipeline').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    ['pipe0','pipe1','pipe2','pipe3'].forEach((id,i) => setPipe(i,'idle','En attente...'));
-
-    try {
-      setPipe(0, 'running', 'Envoi à Gemini Flash...');
-      const notes = document.getElementById('notes-input').value.trim();
-      const mapping = await callGemini(notes, detectedTags);
-      setPipe(0, 'done', 'Notes analysées');
-
-      setPipe(1, 'running', 'Identification des informations...');
-      await sleep(200);
-      setPipe(1, 'done', Object.keys(mapping).length + ' champs extraits');
-
-      renderMappingPreview(mapping);
-      show('mapping-preview-wrap');
-
-      setPipe(2, 'running', 'Injection dans le template...');
-      await sleep(200);
-      const filledZip = await fillTemplate(pptxZip, mapping);
-      setPipe(2, 'done', 'Template rempli');
-
-      setPipe(3, 'running', 'Compression du fichier...');
-      generatedBlob = await filledZip.generateAsync({
-        type: 'blob',
-        mimeType: 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-        compression: 'DEFLATE',
-        compressionOptions: { level: 6 }
-      });
-      setPipe(3, 'done', 'Fichier prêt');
-
-      document.getElementById('filled-count').textContent = Object.values(mapping).filter(v => v && v.trim()).length;
-      show('card-result');
-      document.getElementById('card-result').scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-    } catch(err) {
-      showErr('pipeline-error', 'pipeline-error-msg', err.message);
-      document.getElementById('btn-generate').disabled = false;
-    }
-  }
-
-  // ── Gemini API ───────────────────────────────────────────
-  async function callGemini(notes, tags) {
-    const prompt = `Tu es un assistant qui extrait des informations depuis des notes de réunion pour remplir un template PowerPoint.
-
-Notes de réunion :
+NOTES :
 ${notes}
 
-Balises à remplir :
-${tags.map(t => `- {{${t}}}`).join('\n')}
+SLIDES DU TEMPLATE (contenu actuel placeholder) :
+${summary}
 
-Pour chaque balise, extrais la valeur appropriée depuis les notes. Si l'information est absente, mets "".
-Les valeurs doivent être concises (adaptées à une slide PowerPoint).
+Ta mission :
+1. Sélectionner UNIQUEMENT les slides dont le type correspond aux informations disponibles dans les notes
+2. Pour chaque slide sélectionnée, définir le nouveau contenu à injecter (titre + lignes de texte)
+3. Le contenu doit être concis, professionnel, adapté à une slide PowerPoint
+4. Si une slide n'a pas de correspondance dans les notes, ne pas la garder
 
-Réponds UNIQUEMENT avec un objet JSON valide, sans markdown, sans explication :
-{"nom_balise": "valeur", "autre_balise": "valeur"}`;
+Réponds UNIQUEMENT avec ce JSON valide, sans markdown, sans explication :
+{
+  "selectedSlides": [1, 3],
+  "content": {
+    "1": { "title": "Titre slide 1", "texts": ["Point 1", "Point 2", "Point 3"] },
+    "3": { "title": "Titre slide 3", "texts": ["Point 1", "Point 2"] }
+  }
+}`;
 
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+  const res = await fetch(url, {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ contents:[{parts:[{text:prompt}]}], generationConfig:{temperature:0.2,maxOutputTokens:2048} })
+  });
+  if (!res.ok) { const e=await res.json().catch(()=>({})); throw new Error(`Gemini (${res.status}) : ${e?.error?.message||res.statusText}`); }
+  const data = await res.json();
+  const text = data.candidates?.[0]?.content?.parts?.[0]?.text||'{}';
+  try { return JSON.parse(text.replace(/```json|```/g,'').trim()); }
+  catch { throw new Error('Réponse Gemini invalide — réessayez.'); }
+}
 
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: { temperature: 0.1, maxOutputTokens: 1024 }
-      })
-    });
+async function buildPPTX(zip, slides, ai) {
+  const keep = new Set(ai.selectedSlides.map(Number));
+  const newZip = new JSZip();
 
-    if (!res.ok) {
-      const err = await res.json().catch(() => ({}));
-      throw new Error(`Erreur Gemini (${res.status}) : ${err?.error?.message || res.statusText}`);
+  for (const path of Object.keys(zip.files)) {
+    const file = zip.files[path];
+    if (file.dir) { newZip.folder(path.replace(/\/$/,'')); continue; }
+
+    const sm = path.match(/^ppt\/slides\/slide(\d+)\.xml$/);
+    if (sm) {
+      const idx = parseInt(sm[1]);
+      if (!keep.has(idx)) continue;
+      let xml = await file.async('string');
+      const c = ai.content[String(idx)];
+      if (c) xml = injectContent(xml, c);
+      newZip.file(path, xml);
+      continue;
     }
 
-    const data = await res.json();
-    const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '{}';
-
-    try {
-      const clean = text.replace(/```json|```/g, '').trim();
-      return JSON.parse(clean);
-    } catch {
-      throw new Error('Réponse Gemini invalide — impossible de parser le JSON.');
+    if (path === 'ppt/presentation.xml') {
+      let xml = await file.async('string');
+      xml = trimSlideList(xml, keep, slides);
+      newZip.file(path, xml);
+      continue;
     }
+
+    // Exclure rels des slides supprimées
+    const relM = path.match(/^ppt\/slides\/_rels\/slide(\d+)\.xml\.rels$/);
+    if (relM && !keep.has(parseInt(relM[1]))) continue;
+
+    newZip.file(path, await file.async('uint8array'), {binary:true});
   }
 
-  // ── Fill PPTX ────────────────────────────────────────────
-  async function fillTemplate(zip, mapping) {
-    const newZip = new JSZip();
-    for (const path of Object.keys(zip.files)) {
-      const file = zip.files[path];
-      if (file.dir) { newZip.folder(path.replace(/\/$/, '')); continue; }
-      if (path.match(/^ppt\/slides\/slide\d+\.xml$/) || path.match(/^ppt\/notesSlides\//)) {
-        let content = await file.async('string');
-        content = applyMapping(content, mapping);
-        newZip.file(path, content);
-      } else {
-        newZip.file(path, await file.async('uint8array'), { binary: true });
-      }
+  return newZip.generateAsync({
+    type:'blob',
+    mimeType:'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+    compression:'DEFLATE', compressionOptions:{level:6}
+  });
+}
+
+function injectContent(xml, c) {
+  const allT = [c.title, ...(c.texts||[])].filter(Boolean);
+  let idx = 0;
+  return xml.replace(/(<a:p\b[^>]*>)([\s\S]*?)(<\/a:p>)/g, (match, open, body, close) => {
+    const rt = runsText(body);
+    if (!rt.trim()) return match;
+    const newT = idx < allT.length ? allT[idx++] : '';
+    const fr = body.match(/(<a:r\b[^>]*>[\s\S]*?)<a:t/);
+    if (fr) return `${open}${fr[1]}<a:t>${esc(newT)}</a:t></a:r>${close}`;
+    return `${open}<a:r><a:t>${esc(newT)}</a:t></a:r>${close}`;
+  });
+}
+
+function trimSlideList(xml, keep, slides) {
+  const sorted = slides.map(s=>s.index).sort((a,b)=>a-b);
+  return xml.replace(/<p:sldIdLst>([\s\S]*?)<\/p:sldIdLst>/, (match, inner) => {
+    const items=[]; const r=/<p:sldId\b([^>]*)\/>/g; let m; let i=0;
+    while((m=r.exec(inner))!==null){
+      if(keep.has(sorted[i])) items.push(`<p:sldId${m[1]}/>`);
+      i++;
     }
-    return newZip;
-  }
+    return `<p:sldIdLst>${items.join('')}</p:sldIdLst>`;
+  });
+}
 
-  function applyMapping(xml, mapping) {
-    Object.entries(mapping).forEach(([key, val]) => {
-      if (!val) return;
-      xml = xml.split(`{{${key}}}`).join(escXml(val));
-    });
-    xml = xml.replace(/(<a:p\b[^>]*>)([\s\S]*?)(<\/a:p>)/g, (match, open, body, close) => {
-      const paraText = extractRunsText(body);
-      let hasTag = false;
-      Object.keys(mapping).forEach(k => { if (paraText.includes(`{{${k}}}`)) hasTag = true; });
-      if (!hasTag) return match;
-      let newText = paraText;
-      Object.entries(mapping).forEach(([k, v]) => { newText = newText.split(`{{${k}}}`).join(v || ''); });
-      const firstRun = body.match(/(<a:r\b[^>]*>[\s\S]*?)<a:t/);
-      if (firstRun) return `${open}${firstRun[1]}<a:t>${escXml(newText)}</a:t></a:r>${close}`;
-      return `${open}<a:r><a:t>${escXml(newText)}</a:t></a:r>${close}`;
-    });
-    return xml;
-  }
+function renderMap(content) {
+  g('map-rows').innerHTML = Object.entries(content).map(([idx,c]) => {
+    const preview = [c.title,...(c.texts||[])].filter(Boolean).join(' · ').substring(0,100);
+    return `<div class="map-row"><span class="map-key">Slide ${idx}</span><span class="map-val">${preview}</span></div>`;
+  }).join('');
+}
 
-  function extractRunsText(body) {
-    const runs = []; const r = /<a:t[^>]*>([\s\S]*?)<\/a:t>/g; let m;
-    while ((m = r.exec(body)) !== null) runs.push(unescXml(m[1]));
-    return runs.join('');
-  }
+function download() {
+  if (!resultBlob) return;
+  const url = URL.createObjectURL(resultBlob);
+  const a = document.createElement('a'); a.href=url; a.download=origName+'_rempli.pptx';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(()=>URL.revokeObjectURL(url),5000);
+}
 
-  function renderMappingPreview(mapping) {
-    document.getElementById('mapping-rows').innerHTML = detectedTags.map(tag => {
-      const val = mapping[tag] || '';
-      return `<div class="mapping-row">
-        <span class="mapping-key">{{${tag}}}</span>
-        <span class="mapping-val ${val ? '' : 'empty'}">${val || 'Non trouvé dans les notes'}</span>
-      </div>`;
-    }).join('');
-  }
+function restart() {
+  pptxZip=null; slideData=[]; resultBlob=null; origName='';
+  g('notes').value=''; g('char-count').textContent='0 caractères';
+  g('dz').classList.remove('loaded','drag');
+  g('dz-ico').className='dz-ico idle';
+  g('dz-ico').innerHTML=`<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>`;
+  g('dz-title').textContent='Glissez votre fichier .pptx ici';
+  g('dz-sub').textContent="Aucune balise requise — l'IA analyse la structure de votre template";
+  ['slide-info','card-pipe','card-result'].forEach(hide);
+  setStep('sn1','dot1',''); setStep('sn2','dot2','');
+  checkReady();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
 
-  function downloadResult() {
-    if (!generatedBlob) return;
-    const url = URL.createObjectURL(generatedBlob);
-    const a = document.createElement('a'); a.href = url;
-    a.download = `${originalFileName}_rempli.pptx`;
-    document.body.appendChild(a); a.click(); document.body.removeChild(a);
-    setTimeout(() => URL.revokeObjectURL(url), 5000);
-  }
-
-  function restart() {
-    pptxZip = null; detectedTags = []; generatedBlob = null; originalFileName = '';
-    document.getElementById('notes-input').value = '';
-    document.getElementById('notes-count').textContent = '0 caractères';
-    const dz = document.getElementById('dropzone');
-    dz.classList.remove('loaded','dragging');
-    document.getElementById('dz-icon').className = 'dz-icon idle';
-    document.getElementById('dz-icon').innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>`;
-    document.getElementById('dz-title').textContent = 'Glissez votre fichier .pptx ici';
-    document.getElementById('dz-sub').innerHTML = 'Le template doit contenir des balises <code style="background:rgba(0,0,0,.06);padding:1px 5px;border-radius:4px;font-family:\'DM Mono\',monospace;">{{variable}}</code>';
-    hide('tags-found'); hide('no-tags-warn'); hide('card-pipeline'); hide('card-result');
-    ['step1-num','step2-num'].forEach(id => document.getElementById(id).style.background = '');
-    ['notes-dot','template-dot'].forEach(id => document.getElementById(id).classList.remove('ready'));
-    checkReadiness();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  function setPipe(i, state, detail) {
-    const el = document.getElementById('pipe' + i);
-    el.className = 'pipe-icon ' + state;
-    el.innerHTML = state === 'done'
-      ? `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>`
-      : state === 'error' ? '✕' : (i + 1);
-    document.getElementById('pipe' + i + '-detail').textContent = detail;
-  }
-
-  function escXml(s) { if (!s) return ''; return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&apos;'); }
-  function unescXml(s) { if (!s) return ''; return s.replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&apos;/g,"'"); }
-  function show(id) { document.getElementById(id)?.classList.remove('hidden'); }
-  function hide(id) { document.getElementById(id)?.classList.add('hidden'); }
-  function showErr(wId, mId, msg) { document.getElementById(mId).textContent = msg; show(wId); }
-  function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+function runsText(body) { const r=/<a:t[^>]*>([\s\S]*?)<\/a:t>/g; let m; const a=[]; while((m=r.exec(body))!==null) a.push(unesc(m[1])); return a.join(''); }
+function esc(s) { if(!s)return''; return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&apos;'); }
+function unesc(s) { if(!s)return''; return s.replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&apos;/g,"'"); }
+function g(id) { return document.getElementById(id); }
+function show(id) { g(id)?.classList.remove('hidden'); }
+function hide(id) { g(id)?.classList.add('hidden'); }
+function showErr(w,m,msg) { g(m).textContent=msg; show(w); }
+function sleep(ms) { return new Promise(r=>setTimeout(r,ms)); }
+function setPipe(i,s,d) {
+  const el=g('p'+i); el.className='pi '+s;
+  el.innerHTML=s==='done'?`<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>`:s==='err'?'✕':(i+1);
+  g('p'+i+'d').textContent=d;
+}
+function setStep(sn,dot,s) {
+  const n=g(sn),d=g(dot);
+  if(s==='ok'){n.className='sn ok';d.className='dot ok';}
+  else if(s==='active'){n.className='sn active';d.className='dot';}
+  else{n.className='sn';d.className='dot';}
+}
 </script>
 </body>
 </html>
