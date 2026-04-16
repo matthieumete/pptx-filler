@@ -11,29 +11,17 @@
     :root {
       --bg: #f5f3ee; --ink: #1a1814; --ink2: #4a4640; --ink3: #8a857d;
       --paper: #faf9f6; --card: #fff;
-      --accent: #1a73e8; --accent-light: #e8f0fe; --accent-border: #aecbfa;
+      --accent: #f55036; --accent-light: #fff2f0; --accent-border: #ffc4bb;
       --green: #1a7a4a; --green-light: #edf7f2; --green-border: #a8dfc0;
       --border: #e0ddd6; --radius: 14px;
       --shadow: 0 2px 8px rgba(26,24,20,.06), 0 12px 32px rgba(26,24,20,.04);
     }
-    body {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      background: var(--bg); color: var(--ink);
-      min-height: 100vh; padding: 48px 20px 100px;
-    }
-    body::before {
-      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-    }
+    body { font-family: 'Bricolage Grotesque', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; padding: 48px 20px 100px; }
+    body::before { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E"); }
     .wrapper { max-width: 700px; margin: 0 auto; position: relative; z-index: 1; }
 
     .header { margin-bottom: 40px; }
-    .header .tag {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--accent); color: #fff;
-      font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
-      padding: 5px 12px; border-radius: 999px; margin-bottom: 14px;
-    }
+    .header .tag { display: inline-flex; align-items: center; gap: 6px; background: var(--accent); color: #fff; font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 5px 12px; border-radius: 999px; margin-bottom: 14px; }
     .header h1 { font-size: 38px; font-weight: 800; letter-spacing: -.03em; line-height: 1.08; margin-bottom: 8px; }
     .header h1 em { font-style: normal; color: var(--accent); }
     .header p { color: var(--ink3); font-size: 14px; line-height: 1.6; max-width: 500px; }
@@ -41,8 +29,7 @@
     .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 14px; overflow: hidden; }
     .card-head { padding: 16px 22px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; background: var(--paper); }
     .sn { width: 26px; height: 26px; border-radius: 7px; background: #ccc; color: #fff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background .3s; }
-    .sn.ok { background: var(--green); }
-    .sn.active { background: var(--accent); }
+    .sn.ok { background: var(--green); } .sn.active { background: var(--accent); }
     .card-head h2 { font-size: 14px; font-weight: 600; }
     .dot { margin-left: auto; width: 8px; height: 8px; border-radius: 50%; background: var(--border); transition: all .3s; }
     .dot.ok { background: var(--green); box-shadow: 0 0 0 3px var(--green-light); }
@@ -65,16 +52,14 @@
     .dropzone:hover, .dropzone.drag { border-color: var(--accent); background: var(--accent-light); }
     .dropzone.loaded { border-color: var(--green); border-style: solid; background: var(--green-light); }
     .dz-ico { width: 40px; height: 40px; border-radius: 9px; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; }
-    .dz-ico.idle { background: var(--border); color: var(--ink3); }
-    .dz-ico.ok { background: var(--green-light); color: var(--green); border: 1px solid var(--green-border); }
-    .dropzone h3 { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
-    .dropzone p { font-size: 12px; color: var(--ink3); }
+    .dz-ico.idle { background: var(--border); color: var(--ink3); } .dz-ico.ok { background: var(--green-light); color: var(--green); border: 1px solid var(--green-border); }
+    .dropzone h3 { font-size: 14px; font-weight: 600; margin-bottom: 3px; } .dropzone p { font-size: 12px; color: var(--ink3); }
 
     .slide-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
     .slide-chip { background: var(--accent-light); border: 1px solid var(--accent-border); color: var(--accent); border-radius: 6px; padding: 4px 10px; font-size: 11px; font-weight: 500; display: flex; align-items: center; gap: 5px; }
 
     .btn-gen { width: 100%; padding: 15px; background: var(--ink); color: #fff; border: none; border-radius: 11px; font-family: 'Bricolage Grotesque', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 9px; transition: all .2s; margin-top: 20px; }
-    .btn-gen:hover:not(:disabled) { background: var(--accent); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(26,115,232,.25); }
+    .btn-gen:hover:not(:disabled) { background: var(--accent); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(245,80,54,.25); }
     .btn-gen:disabled { opacity: .35; cursor: not-allowed; transform: none; }
 
     .pipeline { display: flex; flex-direction: column; }
@@ -85,7 +70,7 @@
     .pi.run { background: var(--accent); color: #fff; animation: pulse 1.2s ease-in-out infinite; }
     .pi.done { background: var(--green); color: #fff; }
     .pi.err { background: #ef4444; color: #fff; }
-    @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(26,115,232,.4)} 50%{box-shadow:0 0 0 6px rgba(26,115,232,0)} }
+    @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(245,80,54,.4)} 50%{box-shadow:0 0 0 6px rgba(245,80,54,0)} }
     .pl { font-size: 13px; font-weight: 500; color: var(--ink2); padding-top: 4px; }
     .pd { font-size: 11px; color: var(--ink3); margin-top: 2px; font-family: 'DM Mono', monospace; }
 
@@ -118,23 +103,23 @@
 
   <div class="header">
     <div class="tag">
-      <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
-      Gemini AI · Zéro balise requise
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      Groq AI · Gratuit · Zéro balise
     </div>
     <h1>Notes → <em>Slides</em><br>automatiquement.</h1>
-    <p>Collez vos notes, uploadez n'importe quel template PPTX sans balises. L'IA choisit les slides à garder et remplit le contenu.</p>
+    <p>Collez vos notes, uploadez n'importe quel template PPTX. L'IA choisit les slides à garder et remplit le contenu.</p>
   </div>
 
   <!-- API Key -->
   <div class="card">
     <div class="card-head">
       <div class="sn active" id="sn0">⚙</div>
-      <h2>Clé API Gemini</h2>
+      <h2>Clé API Groq <span style="font-size:11px;font-weight:400;color:var(--ink3);">(gratuite sur console.groq.com)</span></h2>
       <div class="dot" id="dot0"></div>
     </div>
     <div class="card-body">
       <div class="api-row">
-        <input class="api-input" type="password" id="api-input" placeholder="Votre clé API Google AI Studio..." />
+        <input class="api-input" type="password" id="api-input" placeholder="gsk_..." />
         <button class="btn-sm" onclick="saveKey()">Enregistrer</button>
       </div>
       <div id="api-ok" class="hidden api-ok">
@@ -142,7 +127,7 @@
         Clé enregistrée — <span id="key-preview" style="font-family:'DM Mono',monospace;font-size:11px;"></span>
       </div>
       <p style="font-size:11px;color:var(--ink3);margin-top:8px;">
-        Clé gratuite sur <a href="https://aistudio.google.com/apikey" target="_blank" style="color:var(--accent);">aistudio.google.com/apikey</a> → "Create API Key".
+        Clé gratuite sur <a href="https://console.groq.com/keys" target="_blank" style="color:var(--accent);">console.groq.com/keys</a> → "Create API Key". Stockée uniquement dans votre navigateur.
       </p>
     </div>
   </div>
@@ -186,7 +171,7 @@ Réunion du 15/04 avec M. Dupont (Directeur RH, Airbus)
       </div>
       <div id="slide-info" class="hidden">
         <div class="slide-chips" id="slide-chips"></div>
-        <p style="font-size:11px;color:var(--ink3);margin-top:8px;">Gemini va analyser ces slides, choisir les plus pertinentes et les remplir.</p>
+        <p style="font-size:11px;color:var(--ink3);margin-top:8px;">Llama 3.3 va analyser ces slides, choisir les plus pertinentes et les remplir.</p>
       </div>
       <div class="alert alert-err hidden" id="file-err">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
@@ -247,36 +232,26 @@ Réunion du 15/04 avec M. Dupont (Directeur RH, Airbus)
 
 </div>
 <script>
-let apiKey = localStorage.getItem('gemini_key') || '';
-let pptxZip = null;
-let slideData = [];
-let resultBlob = null;
-let origName = '';
+let apiKey = localStorage.getItem('groq_key') || '';
+let pptxZip = null, slideData = [], resultBlob = null, origName = '';
 
-window.addEventListener('DOMContentLoaded', () => {
-  if (apiKey) renderApiOk();
-  checkReady();
-});
+window.addEventListener('DOMContentLoaded', () => { if (apiKey) renderApiOk(); checkReady(); });
 
 function saveKey() {
   const v = g('api-input').value.trim();
   if (v.length < 8) { alert('Clé trop courte.'); return; }
-  apiKey = v;
-  localStorage.setItem('gemini_key', apiKey);
-  renderApiOk();
-  checkReady();
+  apiKey = v; localStorage.setItem('groq_key', apiKey); renderApiOk(); checkReady();
 }
 function renderApiOk() {
-  g('api-input').value = apiKey;
-  show('api-ok');
-  g('key-preview').textContent = apiKey.substring(0,14) + '...';
+  g('api-input').value = apiKey; show('api-ok');
+  g('key-preview').textContent = apiKey.substring(0,16)+'...';
   setStep('sn0','dot0','ok');
 }
 
 function onNotes() {
   const v = g('notes').value;
-  g('char-count').textContent = v.length + ' caractères';
-  setStep('sn1','dot1', v.trim().length > 30 ? 'ok' : '');
+  g('char-count').textContent = v.length+' caractères';
+  setStep('sn1','dot1', v.trim().length>30?'ok':'');
   checkReady();
 }
 
@@ -293,38 +268,27 @@ async function loadFile(file) {
     pptxZip = await JSZip.loadAsync(file);
     slideData = await readSlides(pptxZip);
     g('dz').classList.add('loaded');
-    g('dz-ico').className = 'dz-ico ok';
-    g('dz-ico').innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>`;
-    g('dz-title').textContent = file.name;
-    g('dz-sub').textContent = (file.size/1024).toFixed(0)+' KB · '+slideData.length+' slide(s) détectée(s)';
-    g('slide-chips').innerHTML = slideData.map(s =>
-      `<div class="slide-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>Slide ${s.index}${s.title?' · '+s.title.substring(0,18):''}</div>`
-    ).join('');
-    show('slide-info');
-    setStep('sn2','dot2','ok');
-    checkReady();
+    g('dz-ico').className='dz-ico ok';
+    g('dz-ico').innerHTML=`<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>`;
+    g('dz-title').textContent=file.name;
+    g('dz-sub').textContent=(file.size/1024).toFixed(0)+' KB · '+slideData.length+' slide(s) détectée(s)';
+    g('slide-chips').innerHTML=slideData.map(s=>`<div class="slide-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>Slide ${s.index}${s.title?' · '+s.title.substring(0,18):''}</div>`).join('');
+    show('slide-info'); setStep('sn2','dot2','ok'); checkReady();
   } catch(err) { showErr('file-err','file-err-msg','Erreur : '+err.message); }
 }
 
 async function readSlides(zip) {
-  const paths = Object.keys(zip.files)
-    .filter(p => p.match(/^ppt\/slides\/slide(\d+)\.xml$/))
-    .sort((a,b) => sNum(a)-sNum(b));
-  const slides = [];
+  const paths = Object.keys(zip.files).filter(p=>p.match(/^ppt\/slides\/slide(\d+)\.xml$/)).sort((a,b)=>sNum(a)-sNum(b));
+  const slides=[];
   for (const path of paths) {
-    const idx = sNum(path);
-    const xml = await zip.files[path].async('string');
-    const texts = allTexts(xml);
-    slides.push({ index:idx, path, title:texts[0]||'', texts, xml });
+    const idx=sNum(path), xml=await zip.files[path].async('string'), texts=allTexts(xml);
+    slides.push({index:idx,path,title:texts[0]||'',texts,xml});
   }
   return slides;
 }
-
 function sNum(p) { const m=p.match(/slide(\d+)\.xml$/); return m?parseInt(m[1]):0; }
-
 function allTexts(xml) {
-  const out=[];
-  const pr=/<a:p\b[^>]*>([\s\S]*?)<\/a:p>/g; let pm;
+  const out=[], pr=/<a:p\b[^>]*>([\s\S]*?)<\/a:p>/g; let pm;
   while((pm=pr.exec(xml))!==null){
     const rr=/<a:t[^>]*>([\s\S]*?)<\/a:t>/g; let rm; const runs=[];
     while((rm=rr.exec(pm[1]))!==null) runs.push(unesc(rm[1]));
@@ -339,155 +303,129 @@ function checkReady() {
 
 async function run() {
   show('card-pipe'); hide('card-result'); hide('pipe-err'); hide('map-wrap');
-  g('btn-gen').disabled = true;
+  g('btn-gen').disabled=true;
   g('card-pipe').scrollIntoView({behavior:'smooth',block:'start'});
   [0,1,2,3].forEach(i=>setPipe(i,'idle','En attente...'));
-
   try {
-    setPipe(0,'run','Envoi à Gemini Flash...');
-    const notes = g('notes').value.trim();
-    const ai = await callGemini(notes, slideData);
-    setPipe(0,'done', slideData.length+' slides analysées');
+    setPipe(0,'run','Envoi à Llama 3.3 (Groq)...');
+    const ai = await callGroq(g('notes').value.trim(), slideData);
+    setPipe(0,'done',slideData.length+' slides analysées');
 
-    setPipe(1,'run','Filtrage...');
+    setPipe(1,'run','Filtrage des slides...');
     await sleep(150);
     setPipe(1,'done','Slides retenues : '+ai.selectedSlides.join(', '));
 
     setPipe(2,'run','Injection du contenu...');
     await sleep(150);
-    renderMap(ai.content);
-    show('map-wrap');
+    renderMap(ai.content); show('map-wrap');
     setPipe(2,'done','Contenu injecté');
 
     setPipe(3,'run','Assemblage PPTX...');
     resultBlob = await buildPPTX(pptxZip, slideData, ai);
     setPipe(3,'done','Fichier prêt');
 
-    g('result-summary').innerHTML = `Gemini a retenu <strong>${ai.selectedSlides.length}</strong> slide(s) et rempli le contenu depuis vos notes.<br><span style="font-size:11px;">Template original non modifié.</span>`;
+    g('result-summary').innerHTML=`Llama 3.3 a retenu <strong>${ai.selectedSlides.length}</strong> slide(s) et rempli le contenu depuis vos notes.<br><span style="font-size:11px;">Template original non modifié.</span>`;
     show('card-result');
     g('card-result').scrollIntoView({behavior:'smooth',block:'center'});
   } catch(err) {
     showErr('pipe-err','pipe-err-msg',err.message);
-    g('btn-gen').disabled = false;
+    g('btn-gen').disabled=false;
   }
 }
 
-async function callGemini(notes, slides) {
-  const summary = slides.map(s =>
-    `Slide ${s.index} :\n${s.texts.slice(0,5).map(t=>'  - '+t).join('\n')}`
-  ).join('\n\n');
-
-  const prompt = `Tu es un assistant qui remplit des présentations PowerPoint à partir de notes de réunion.
+async function callGroq(notes, slides) {
+  const summary = slides.map(s=>`Slide ${s.index}:\n${s.texts.slice(0,5).map(t=>'  - '+t).join('\n')}`).join('\n\n');
+  const prompt = `Tu es un assistant qui remplit des présentations PowerPoint à partir de notes de réunion. Réponds UNIQUEMENT avec du JSON valide, sans markdown, sans explication.
 
 NOTES :
 ${notes}
 
-SLIDES DU TEMPLATE (contenu actuel placeholder) :
+SLIDES DU TEMPLATE :
 ${summary}
 
-Ta mission :
-1. Sélectionner UNIQUEMENT les slides dont le type correspond aux informations disponibles dans les notes
-2. Pour chaque slide sélectionnée, définir le nouveau contenu à injecter (titre + lignes de texte)
-3. Le contenu doit être concis, professionnel, adapté à une slide PowerPoint
-4. Si une slide n'a pas de correspondance dans les notes, ne pas la garder
+Sélectionne uniquement les slides pertinentes par rapport aux notes. Pour chaque slide gardée, définis le nouveau contenu (titre + lignes de texte concises, style PowerPoint professionnel).
 
-Réponds UNIQUEMENT avec ce JSON valide, sans markdown, sans explication :
-{
-  "selectedSlides": [1, 3],
-  "content": {
-    "1": { "title": "Titre slide 1", "texts": ["Point 1", "Point 2", "Point 3"] },
-    "3": { "title": "Titre slide 3", "texts": ["Point 1", "Point 2"] }
-  }
-}`;
+JSON attendu :
+{"selectedSlides":[1,3],"content":{"1":{"title":"Titre","texts":["Point 1","Point 2"]},"3":{"title":"Titre","texts":["Point 1"]}}}`;
 
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-  const res = await fetch(url, {
-    method:'POST', headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({ contents:[{parts:[{text:prompt}]}], generationConfig:{temperature:0.2,maxOutputTokens:2048} })
+  const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${apiKey}` },
+    body: JSON.stringify({
+      model: 'llama-3.3-70b-versatile',
+      messages: [{ role: 'user', content: prompt }],
+      temperature: 0.2,
+      max_tokens: 2048,
+      response_format: { type: 'json_object' }
+    })
   });
-  if (!res.ok) { const e=await res.json().catch(()=>({})); throw new Error(`Gemini (${res.status}) : ${e?.error?.message||res.statusText}`); }
+
+  if (!res.ok) {
+    const e = await res.json().catch(()=>({}));
+    throw new Error(`Groq (${res.status}) : ${e?.error?.message||res.statusText}`);
+  }
   const data = await res.json();
-  const text = data.candidates?.[0]?.content?.parts?.[0]?.text||'{}';
-  try { return JSON.parse(text.replace(/```json|```/g,'').trim()); }
-  catch { throw new Error('Réponse Gemini invalide — réessayez.'); }
+  const text = data.choices?.[0]?.message?.content || '{}';
+  try { return JSON.parse(text); }
+  catch { throw new Error('Réponse invalide — réessayez.'); }
 }
 
 async function buildPPTX(zip, slides, ai) {
   const keep = new Set(ai.selectedSlides.map(Number));
   const newZip = new JSZip();
-
   for (const path of Object.keys(zip.files)) {
     const file = zip.files[path];
     if (file.dir) { newZip.folder(path.replace(/\/$/,'')); continue; }
-
     const sm = path.match(/^ppt\/slides\/slide(\d+)\.xml$/);
     if (sm) {
-      const idx = parseInt(sm[1]);
-      if (!keep.has(idx)) continue;
-      let xml = await file.async('string');
-      const c = ai.content[String(idx)];
-      if (c) xml = injectContent(xml, c);
-      newZip.file(path, xml);
-      continue;
+      const idx=parseInt(sm[1]); if(!keep.has(idx)) continue;
+      let xml=await file.async('string');
+      const c=ai.content[String(idx)]; if(c) xml=injectContent(xml,c);
+      newZip.file(path,xml); continue;
     }
-
-    if (path === 'ppt/presentation.xml') {
-      let xml = await file.async('string');
-      xml = trimSlideList(xml, keep, slides);
-      newZip.file(path, xml);
-      continue;
+    if (path==='ppt/presentation.xml') {
+      let xml=await file.async('string');
+      xml=trimSlideList(xml,keep,slides);
+      newZip.file(path,xml); continue;
     }
-
-    // Exclure rels des slides supprimées
-    const relM = path.match(/^ppt\/slides\/_rels\/slide(\d+)\.xml\.rels$/);
+    const relM=path.match(/^ppt\/slides\/_rels\/slide(\d+)\.xml\.rels$/);
     if (relM && !keep.has(parseInt(relM[1]))) continue;
-
     newZip.file(path, await file.async('uint8array'), {binary:true});
   }
-
-  return newZip.generateAsync({
-    type:'blob',
-    mimeType:'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-    compression:'DEFLATE', compressionOptions:{level:6}
-  });
+  return newZip.generateAsync({type:'blob',mimeType:'application/vnd.openxmlformats-officedocument.presentationml.presentation',compression:'DEFLATE',compressionOptions:{level:6}});
 }
 
 function injectContent(xml, c) {
-  const allT = [c.title, ...(c.texts||[])].filter(Boolean);
-  let idx = 0;
-  return xml.replace(/(<a:p\b[^>]*>)([\s\S]*?)(<\/a:p>)/g, (match, open, body, close) => {
-    const rt = runsText(body);
-    if (!rt.trim()) return match;
-    const newT = idx < allT.length ? allT[idx++] : '';
-    const fr = body.match(/(<a:r\b[^>]*>[\s\S]*?)<a:t/);
-    if (fr) return `${open}${fr[1]}<a:t>${esc(newT)}</a:t></a:r>${close}`;
+  const allT=[c.title,...(c.texts||[])].filter(Boolean); let idx=0;
+  return xml.replace(/(<a:p\b[^>]*>)([\s\S]*?)(<\/a:p>)/g,(match,open,body,close)=>{
+    if(!runsText(body).trim()) return match;
+    const newT=idx<allT.length?allT[idx++]:'';
+    const fr=body.match(/(<a:r\b[^>]*>[\s\S]*?)<a:t/);
+    if(fr) return `${open}${fr[1]}<a:t>${esc(newT)}</a:t></a:r>${close}`;
     return `${open}<a:r><a:t>${esc(newT)}</a:t></a:r>${close}`;
   });
 }
 
 function trimSlideList(xml, keep, slides) {
-  const sorted = slides.map(s=>s.index).sort((a,b)=>a-b);
-  return xml.replace(/<p:sldIdLst>([\s\S]*?)<\/p:sldIdLst>/, (match, inner) => {
-    const items=[]; const r=/<p:sldId\b([^>]*)\/>/g; let m; let i=0;
-    while((m=r.exec(inner))!==null){
-      if(keep.has(sorted[i])) items.push(`<p:sldId${m[1]}/>`);
-      i++;
-    }
+  const sorted=slides.map(s=>s.index).sort((a,b)=>a-b);
+  return xml.replace(/<p:sldIdLst>([\s\S]*?)<\/p:sldIdLst>/,(match,inner)=>{
+    const items=[],r=/<p:sldId\b([^>]*)\/>/g; let m,i=0;
+    while((m=r.exec(inner))!==null){if(keep.has(sorted[i])) items.push(`<p:sldId${m[1]}/>`);i++;}
     return `<p:sldIdLst>${items.join('')}</p:sldIdLst>`;
   });
 }
 
 function renderMap(content) {
-  g('map-rows').innerHTML = Object.entries(content).map(([idx,c]) => {
-    const preview = [c.title,...(c.texts||[])].filter(Boolean).join(' · ').substring(0,100);
+  g('map-rows').innerHTML=Object.entries(content).map(([idx,c])=>{
+    const preview=[c.title,...(c.texts||[])].filter(Boolean).join(' · ').substring(0,100);
     return `<div class="map-row"><span class="map-key">Slide ${idx}</span><span class="map-val">${preview}</span></div>`;
   }).join('');
 }
 
 function download() {
-  if (!resultBlob) return;
-  const url = URL.createObjectURL(resultBlob);
-  const a = document.createElement('a'); a.href=url; a.download=origName+'_rempli.pptx';
+  if(!resultBlob) return;
+  const url=URL.createObjectURL(resultBlob), a=document.createElement('a');
+  a.href=url; a.download=origName+'_rempli.pptx';
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
   setTimeout(()=>URL.revokeObjectURL(url),5000);
 }
@@ -502,24 +440,23 @@ function restart() {
   g('dz-sub').textContent="Aucune balise requise — l'IA analyse la structure de votre template";
   ['slide-info','card-pipe','card-result'].forEach(hide);
   setStep('sn1','dot1',''); setStep('sn2','dot2','');
-  checkReady();
-  window.scrollTo({top:0,behavior:'smooth'});
+  checkReady(); window.scrollTo({top:0,behavior:'smooth'});
 }
 
-function runsText(body) { const r=/<a:t[^>]*>([\s\S]*?)<\/a:t>/g; let m; const a=[]; while((m=r.exec(body))!==null) a.push(unesc(m[1])); return a.join(''); }
-function esc(s) { if(!s)return''; return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&apos;'); }
-function unesc(s) { if(!s)return''; return s.replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&apos;/g,"'"); }
-function g(id) { return document.getElementById(id); }
-function show(id) { g(id)?.classList.remove('hidden'); }
-function hide(id) { g(id)?.classList.add('hidden'); }
-function showErr(w,m,msg) { g(m).textContent=msg; show(w); }
-function sleep(ms) { return new Promise(r=>setTimeout(r,ms)); }
-function setPipe(i,s,d) {
-  const el=g('p'+i); el.className='pi '+s;
+function runsText(body){const r=/<a:t[^>]*>([\s\S]*?)<\/a:t>/g;let m;const a=[];while((m=r.exec(body))!==null)a.push(unesc(m[1]));return a.join('');}
+function esc(s){if(!s)return'';return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&apos;');}
+function unesc(s){if(!s)return'';return s.replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&apos;/g,"'");}
+function g(id){return document.getElementById(id);}
+function show(id){g(id)?.classList.remove('hidden');}
+function hide(id){g(id)?.classList.add('hidden');}
+function showErr(w,m,msg){g(m).textContent=msg;show(w);}
+function sleep(ms){return new Promise(r=>setTimeout(r,ms));}
+function setPipe(i,s,d){
+  const el=g('p'+i);el.className='pi '+s;
   el.innerHTML=s==='done'?`<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>`:s==='err'?'✕':(i+1);
   g('p'+i+'d').textContent=d;
 }
-function setStep(sn,dot,s) {
+function setStep(sn,dot,s){
   const n=g(sn),d=g(dot);
   if(s==='ok'){n.className='sn ok';d.className='dot ok';}
   else if(s==='active'){n.className='sn active';d.className='dot';}
